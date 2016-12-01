@@ -1,12 +1,12 @@
 <div class="image_wrap">
 	<br>
 	<div class="outer">
-		<!--div class="search" ng-show="data.isSearch">
+		<div class="search">
 			<form name="frmSearch" ng-submit="search(query)">
-				<input type="text" name="searchField" ng-model="data.query" placeholder="Input query">
+				<input type="text" name="searchField" ng-model="query" placeholder="Input query">
 				<input type="submit" name="searchSend">
 			</form>
-		</div-->
+		</div>
 		<br>
 		<div class="image" ng-repeat="item in images" ng-mouseenter="shadowOn($index)" ng-mouseleave="shadowOff($index)">
 			<a href="" ng-click="viewBig(item.id)">
