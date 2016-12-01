@@ -1,0 +1,26 @@
+<div class="image_wrap">
+	<br>
+	<div class="outer">
+		<div class="search" ng-if="isSearch">
+			<form name="frmSearch" ng-submit="search(query)">
+				<input type="text" name="searchField" ng-model="query" placeholder="Input query">
+				<input type="submit" name="searchSend">
+			</form>
+		</div>
+		<br>
+		<div class="image" ng-repeat="item in images">
+			<a href="" ng-click="viewBig(item.id)">
+				<img ng-src="{{item.images.original.url}}" class="image_pic" ng-mouseenter="markOn($event)" ng-mouseleave="markOff()">
+			</a>
+			<a href="" ng-click="delete($index)" ng-if="isDeleted">
+				<span class="delete">X</span>
+			</a>
+		</div>
+	</div>
+	<div class="popup" ng-if="popup">
+		<img ng-src="{{tmpUrl}}" class="image_pic">
+		<a href="" ng-click="close()">
+			<span class="close">X</span>
+		</a>
+	</div>
+</div>
