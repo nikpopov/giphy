@@ -63,15 +63,15 @@ function SearchController($scope, $http, $window, $timeout, storage) {
 		console.log('Event received');
 		if($scope.img) {
 			console.log($scope.img);
-			if(!$window.localStorage.getItem('collection')) {
+			if(!$localStorage.getItem('collection')) {
 				$scope.collection = []
 			} else {
-				$scope.collection = $window.localStorage.getItem('collection').split(',');
+				$scope.collection = $localStorage.getItem('collection').split(',');
 			};
 			if(!$scope.collection.includes($scope.id)) {
-				$window.localStorage.removeItem('collection');
+				$localStorage.removeItem('collection');
 				$scope.collection = $scope.collection.concat($scope.id);
-				$window.localStorage.setItem('collection', $scope.collection);
+				$localStorage.setItem('collection', $scope.collection);
 			}
 		}
 	});

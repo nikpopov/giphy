@@ -1,14 +1,15 @@
 angular.module('myapp').controller('collectionController', CollectionController);
-CollectionController.$inject = ['$scope', '$window', '$http', 'storage'];
+CollectionController.$inject = ['$scope', '$window', '$http', '$timeout', 'storage'];
 
-function CollectionController($scope, $window, $http, storage) {
+function CollectionController($scope, $window, $http, $timeout, storage) {
 	console.log('Collection Controller');
 
 	$scope.images = [];
-	$scope.isSearch = false;
-	$scope.isDeleted = true;
-	$scope.popup = false;
-	$scope.img = "";
+	$scope.data = {};
+	$scope.data.isSearch = false;
+	$scope.data.isDeleted = true;
+	$scope.data.popup = false;
+	$scope.data.img = "";
 
 	if(!$window.localStorage.getItem('collection')) {
 		$scope.collection = []
@@ -36,13 +37,15 @@ function CollectionController($scope, $window, $http, storage) {
 			var index = $scope.collection.indexOf(id);
 			$scope.collection.splice(index, 1);
 			$window.localStorage.removeItem('collection');
-			$window.localStorage.setItem('collection', $scope.collection);
+			if ($scope.collection.length) {
+				$window.localStorage.setItem('collection', $scope.collection);
+			}
 		};
 		$scope.images.splice(index, 1);
 	};
 
 	$scope.viewBig = function(id) {
-		$scope.popup = true;
+		$scope.data.popup = true;
 		$http({
 			method: 'GET',
 			url: 'http://api.giphy.com/v1/gifs/' + id,
@@ -52,8 +55,13 @@ function CollectionController($scope, $window, $http, storage) {
 		}).then(function(response) {
 			console.log(response.data.data.images.original.url);
 			$timeout(function() {
-				$scope.tmpUrl = response.data.data.images.original.url;
+				$scope.data.tmpUrl = response.data.data.images.original.url;
 			}, 50)
 		})
+	};
+
+	$scope.close = function() {
+		$scope.data.tmpUrl = "";
+		$scope.data.popup = false;
 	};
 };
