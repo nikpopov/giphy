@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--base href="/"-->
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>GIPHY TEST</title>
+	
+</head>
+
+<body ng-controller="mainController">
+	
+	<div class="wrap" ng-keyup="catchCode($event)">
+
+<!--HEADER-->
+		<header>
+			<div class="header">
+				<div class="header_left">
+					<div class="logo">
+						<a href="#/">	
+							<img src="../img/logo.png">
+						</a>	
+					</div>
+				</div>
+				<div class="header_right">
+					<!--div class="login">
+						<a href="#/login">Login</a>
+						<a href="#/register">Register</a>
+					</div-->
+					<div class="login"></div>
+					<nav class="navigation" ng-if="!userStatus.isAdmin">
+						<ul class="main_menu">
+							<a href="#/"><li class="">Main Page</li></a>
+							<a href="#/gallery"><li class="">Gallery</li></a>
+							<a href="#/search" ng-click="searchOn()"><li class="">Search</li></a>
+							<a href="#/collection"><li class="">Collection</li></a>
+						</ul>
+					</nav>
+					<!--nav class="navigation" ng-if="userStatus.isAdmin">
+						<ul class="main_menu">
+							<a href=""><li class="">Пользователи</li></a>
+							<a href=""><li class="">Библиотека</li></a>
+							<a href=""><li class="">Галерея</li></a>
+						</ul>
+					</nav-->
+				</div>
+			</div>
+		</header>
+		<div class="clear"></div>		
+
+<!--MAIN CONTENT BLOCK-->
+		<div id="content" ng-view></div>
+		<div class="clear"></div>					
+		
+<!--FOOTER-->
+		<footer>
+			<div class="footer">
+				<p>Some Footer Text and Features</p>
+			</div>
+		</footer>
+
+	</div>
+
+	<!--Angular.js Core-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+
+	<script src="../js/app.js" type="text/javascript"></script>
+	<script src="../js/factories/crud.js" type="text/javascript"></script>
+	<script src="../js/directives/directives.js" type="text/javascript"></script>
+	<script src="../js/controllers/main.js" type="text/javascript"></script>
+	<script src="../js/controllers/galery.js" type="text/javascript"></script>
+	<script src="../js/controllers/search.js" type="text/javascript"></script>
+	<script src="../js/controllers/collection.js" type="text/javascript"></script>
+</body>
+</html>
