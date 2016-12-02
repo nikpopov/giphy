@@ -13,11 +13,11 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
                 controller: 'galleryController'
             })            
             .when('/search', {
-                templateUrl: '../view/galery.html',
-                controller: 'searchController'
+                templateUrl: '../view/search.html',
+                controller: 'galleryController'
             })
             .when('/collection', {
-                templateUrl: '../view/galery.html',
+                templateUrl: '../view/collection.html',
                 controller: 'collectionController'
             })
             .otherwise({
