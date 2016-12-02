@@ -1,0 +1,30 @@
+<div class="image_wrap">
+	<br>
+	<div class="outer">
+		<div class="upload">
+			<form name="frmUpload" ng-submit="upload($event)">
+				<input type="file" name="selectFile" get-File="uploadFile">
+				<input type="submit" name="loadFile">
+			</form>
+		</div-->
+		<br>
+		<div class="image" ng-repeat="item in images" ng-mouseenter="shadowOn($index)" ng-mouseleave="shadowOff($index)">
+			<a href="" ng-click="viewBig(item.id)">
+				<img ng-src="{{item.images.original.url}}" class="image_pic" ng-mouseenter="markOn($event)" ng-mouseleave="markOff()">
+			</a>
+			<div class="shadow" ng-class="data.addShadow" ng-show="$index === data.fit">
+				<label for="picker" class="pic-lable">To My Collection</label>
+				<input type="checkbox" name="picker" class="pic-enter" ng-model="item.picked" ng-change="switchData(item, $index)">
+			</div>
+			<a href="" ng-click="delete($index)" ng-if="data.isDeleted">
+				<span class="delete">X</span>
+			</a>
+		</div>
+	</div>
+	<div class="popup" ng-if="data.popup">
+		<img ng-src="{{data.tmpUrl}}" class="image_big">
+		<a href="" ng-click="close()">
+			<span class="close">X</span>
+		</a>
+	</div>
+</div>
