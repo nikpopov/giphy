@@ -64,4 +64,28 @@ function CollectionController($scope, $window, $http, $timeout, storage) {
 		$scope.data.tmpUrl = "";
 		$scope.data.popup = false;
 	};
+
+	$scope.upload = function(event) {
+
+		console.log(event.target);
+//		var files = event.target.files;
+		var fileName = '';
+		$timeout(function() {
+			var fileName = event.target[0].files[0].name;
+			console.log(fileName);
+		}, 100)
+//        var filetype = event.target.files[0].type;
+
+		$http({
+			method: 'POST',
+			url: 'http://upload.giphy.com//v1/gifs',
+			params: {
+				api_key: 'dc6zaTOxFJmzC',
+//				file: fileName,
+				source_image_url: 'http://www.animatedgif.net/animals/dinosaurs/dino_e0.gif'
+			}
+		}).then(function(response) {
+			console.log('ID = ', response.data.data['id'])
+		})     
+	};
 };
